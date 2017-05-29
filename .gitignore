@@ -1,0 +1,6 @@
+*.yuv
+*.out
+testseq/
+obj/
+results/
+
