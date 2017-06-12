@@ -2,7 +2,7 @@ VPATH=./src/
 EXEC=app_vcme
 OBJDIR=./obj/
 
-CC=gcc
+CC=g++
 NVCC=nvcc 
 OPTS=-Ofast
 LDFLAGS= -lm 
@@ -18,12 +18,15 @@ OBJ=main.o FS.o app_vcme_common_utils.o
 OBJS = $(addprefix $(OBJDIR), $(OBJ))
 DEPS = $(wildcard src/*.h) Makefile
 
-all: obj backup results $(EXEC)
+all: obj results $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CC) $(COMMON) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+	 $(CC) `pkg-config --cflags opencv` $(COMMON) $(CFLAGS) $^ `pkg-config --libs opencv` -o $@ $(LDFLAGS)
 
 $(OBJDIR)%.o: %.c $(DEPS)
+	$(CC) $(COMMON) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR)%.o: %.cpp $(DEPS)
 	$(CC) $(COMMON) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR)%.o: %.cu $(DEPS)

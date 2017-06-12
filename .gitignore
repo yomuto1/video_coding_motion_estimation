@@ -1,6 +1,9 @@
 *.yuv
 *.out
+*.txt
 testseq/
 obj/
 results/
+app_vcme
+src/tags
 

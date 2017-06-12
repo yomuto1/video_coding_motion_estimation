@@ -7,7 +7,7 @@
 
 #define ABS(a)(((a) < (0))?-(a):(a))
 
-FP64 PSNR(unsigned char **psnr_y1, unsigned char **psnr_y2, INT32U frame, INT32U width, INT32U height);
+FP32 util_PSNR_one_frm(INT08U *p_psnr_1_u08, INT08U *p_psnr_2_u08, INT32U size_u32);
 
 #endif
 
