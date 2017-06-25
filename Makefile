@@ -7,7 +7,7 @@ NVCC=nvcc
 OPTS=-Ofast
 LDFLAGS= -lm 
 COMMON= 
-CFLAGS=-Wall -Wfatal-errors 
+CFLAGS=-Wall -Wfatal-errors -mfpu=neon -ftree-vectorize
 
 OPTS=-O3 #-g
 

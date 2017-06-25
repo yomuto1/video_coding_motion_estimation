@@ -4,4 +4,6 @@
 obj/
 app_vcme
 src/tags
+results/
+testseq/
 
