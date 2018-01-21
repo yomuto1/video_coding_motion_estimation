@@ -2,14 +2,27 @@ VPATH=./src/
 EXEC=app_vcme
 OBJDIR=./obj/
 
+ifeq ($(shell uname -m),x86_64)
+	HOST_ARCH = x86_64
+else
+	HOST_ARCH = arm
+endif
+
 CC=g++
 NVCC=nvcc 
 OPTS=-Ofast
 LDFLAGS= -lm 
 COMMON= 
+ifeq ($(HOST_ARCH),x86_64)
+CFLAGS=-Wall -Wfatal-errors -ftree-vectorize
+else
 CFLAGS=-Wall -Wfatal-errors -mfpu=neon -ftree-vectorize
-
+endif
+ifeq ($(NEON_INTRINSICS),1)
+OPTS=-O3 -DUSE_ARM_NEON_OPT=1 #-g
+else
 OPTS=-O3 #-g
+endif
 
 CFLAGS+=$(OPTS)
 
